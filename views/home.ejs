@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/public/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body style="height: 100vh;">
+    <h1>PK's Form!</h1>
+    <div id="messageDiv">
+        <div id="message">
+            <% if (message != '') { %>
+                <%= message %>
+            <% } %>
+        </div>
+    </div>
+    <h2>Home Page - Public</h2>
+    <div class="wrapper">
+        <form action="/submit" method="POST">
+            <div>
+                <div class="group">
+                    <input type="text" name="name" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Name</label>
+                </div>
+                <div class="group">
+                    <input type="text" name="email" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Email</label>
+                </div>
+                <div class="group">
+                    <input type="number" name="phoneNo" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Phone No.</label>
+                </div>
+
+                <div class="dropdown">
+                    <div class="group" style="margin-bottom: 0px;">
+                        <input type="text" id="droptxt" class="list" name="products" readonly required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Products</label>
+                    </div>
+                    <!-- <input type="text" id="droptxt" class="list" readonly> -->
+                    <div id="content" class="content">
+                        <div class="list"
+                            style="background-color: white; display:flex; justify-content:center; align-items: center;padding: 0px;">
+
+                            <div id="search" class="search">
+                                <i class="fa fa-search search"></i>
+                            </div>
+                            <input type="text" class="list" placeholder="Search.." id="myInput"
+                                onkeyup="filterFunction()">
+                        </div>
+                        <div class="allProducts">
+                            <div id="noProduct" style="display:none;">No Mathcing Products Found!</div>
+                            <% for (let i=0; i < allProducts.length; i++) { %>
+                            <div class="list productGroup">
+                                <input type="checkbox" class="list" value="<%= allProducts[i].productNo %>" />
+                                <label for="apple" class="list productLabel"><%= allProducts[i].productNo %> </label>
+                                <span class="input-number-increment hidden">+</span>
+                                <input type="hidden" class="list input-number quantity" min="1" value="1" />
+                                <span class="input-number-decrement hidden">–</span>
+                                <span class="price">(Price - Rs. <%= allProducts[i].price %>)</span>
+                            </div>
+                            <% } %>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="group">
+                    <button type="submit" class="submit"> Submit</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <script src="/public/js/home.js"></script>
+</body>
+
+</html>

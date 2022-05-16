@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="/public/css/adminDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body style="height: 100vh;">
+    <%- include('./navbar.ejs') %>
+    <h1>PK's Form!</h1>
+    <div id="messageDiv">
+        <div id="message">
+            <% if (message !='' ) { %>
+                <%= message %>
+            <% } %>
+        </div>
+    </div>
+    <h2>All Users</h2>
+    <div class="wrapper">
+        <div class="tableFixHead">
+            <table id="table">
+                <thead>
+                    <tr class="headerRow">
+                        <th>Sr No.</th>
+                        <th>Name</th>
+                        <th>Phone No.</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Person Code</th>
+                        <th>Products</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i < allUsers.length; i++) { %>
+                        <% if((i+1) % 2 == 0) { %>
+                            <tr class="odd">
+                        <% } else { %>
+                            <tr class="even">
+                        <% } %>
+                        
+                            <td>00<%= i+1 %></td>
+                            <td><%= allUsers[i].name %></td>
+                            <td><%= allUsers[i].phoneNo %></td>
+                            <td><%= allUsers[i].email %></td>
+                            <td><%= allUsers[i].date.toISOString().slice(0, 10) %></td>
+                            <td><%= allUsers[i].user_code %></td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>Product No.</td>
+                                        <td>Quantity</td>
+                                        <td>Product Code</td>
+                                        <td>SKU Code</td>
+                                        <td>Price</td>
+                                    </tr>
+                                <% for (let j=0; j < allUsers[i].allProducts.length; j++) { %>
+                                        <tr>
+                                            <td><%= allUsers[i].allProducts[j].productNo %></td>
+                                            <td><%= allUsers[i].allProducts[j].quantity %></td>
+                                            <td><%= allUsers[i].allProducts[j].productCode %></td>
+                                            <td><%= allUsers[i].allProducts[j].skuCode %></td>
+                                            <td><%= allUsers[i].allProducts[j].price %></td>
+                                        </tr>
+    
+                                <% } %>
+                            </table>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/public/js/adminDashboard.js"></script>
+</body>
+
+</html>

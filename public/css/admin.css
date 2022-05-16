@@ -1,0 +1,367 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h2, h1 {
+    text-align: center;
+}
+
+.wrapper {
+    /* height: 100vh; */
+    /* width: 100vw; */
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/**** Dropdown ****/
+#droptxt {
+    padding: 8px;
+    width: 400px;
+    cursor: pointer;
+    box-sizing: border-box
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block
+}
+
+.content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 400px;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+    z-index: 1;
+}
+
+.price {
+    float: right;
+    margin-right: 5px;
+    color: grey;
+    font-size: 15px;
+
+}
+
+.quantity {
+    float: right;
+    width: 50px
+}
+
+.content div {
+    padding: 10px 15px
+}
+
+.allProducts div:hover {
+    background-color: #ddd
+}
+
+.show {
+    display: block
+}
+
+.input-number {
+    width: 50px;
+    padding: 0 12px;
+    vertical-align: top;
+    text-align: center;
+    outline: none;
+}
+
+.input-number,
+.input-number-decrement,
+.input-number-increment {
+    float: right;
+    border: 1px solid #ccc;
+    height: 25px;
+    user-select: none;
+}
+
+.input-number-decrement,
+.input-number-increment {
+    display: inline-block;
+    width: 30px;
+    line-height: 38px;
+    background: #f1f1f1;
+    color: #444;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-number-decrement:active,
+.input-number-increment:active {
+    background: #ddd;
+}
+
+.input-number-decrement {
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+
+.input-number-increment {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* form starting stylings ------------------------------- */
+.group {
+    position: relative;
+    margin-bottom: 35px;
+    width: 400px;
+}
+
+.group input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+.group input:focus {
+    outline: none;
+}
+
+/* LABEL ======================================= */
+.group label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    /* position: absolute; */
+    pointer-events: none;
+    /* left: 5px; */
+    /* top: 10px; */
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+.group input:focus~label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+/* active state */
+.group input:focus~.bar:before,
+.group input:focus~.bar:after {
+    width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.group .highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* active state */
+.group input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+#myInput {
+    box-sizing: border-box;
+    /* background-position: 14px 12px; */
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    width: 100%;
+    /* border-bottom: 1px solid #ddd; */
+}
+  
+#myInput:focus {
+    outline: none;
+}
+#search:hover {
+    background-color: white;
+}
+
+.submit {
+    margin-top: 25px;
+    padding: 10px 30px;
+    background-color: rgb(96, 104, 249);
+    border-radius: 10px;
+    border: 0px;
+    font-size: 20px;
+}
+.submit:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0f1ef8;
+    border-radius: 50px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #0f1ef883;
+}
+
+.allProducts {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#messageDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(131, 133, 5);
+    background-color: rgba(219, 251, 73, 0.644);
+    width: 60%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
+.navbar {
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    width: 100%;
+    height: 50px;
+}
+
+.navabar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar ul li {
+    list-style-type: none;
+    background-color: rgb(0, 0, 0);
+    float: left;
+}
+
+.navbar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar ul li a:hover:not(.active) {
+    background-color: #111;
+}

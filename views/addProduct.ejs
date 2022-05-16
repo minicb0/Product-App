@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add Product</title>
+    <link rel="stylesheet" href="/public/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body style="height: 100vh;">
+    <%- include('./navbar.ejs') %>
+    <h1>PK's Form!</h1>
+    <div id="messageDiv">
+        <div id="message">
+            <% if (message != '') { %>
+                <%= message %>
+            <% } %>
+        </div>
+    </div>
+    <h2>Add A Product</h2>
+    <div class="wrapper">
+        <form action="/addProduct" method="POST">
+            <div>
+                <div class="group">
+                    <input type="text" name="productNo" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Produc No.</label>
+                </div>
+                <div class="group">
+                    <input type="number" name="skuCode" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>SKU Code</label>
+                </div>
+                <div class="group">
+                    <input type="number" name="price" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Price</label>
+                </div>
+                <div class="group">
+                    <button type="submit" class="submit">Add this Product</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
