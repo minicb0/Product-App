@@ -22,33 +22,44 @@
             <% } %>
         </div>
     </div>
-    <h2>Add A Product</h2>
     <div class="wrapper">
-        <form action="/addProduct" method="POST">
-            <div>
-                <div class="group">
-                    <input type="text" name="productNo" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Produc No.</label>
+        <div>
+            <h2>Add New Product</h2>
+            <form action="/addProduct" method="POST">
+                <div>
+                    <div class="group">
+                        <input type="text" name="productNo" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Product No.</label>
+                    </div>
+                    <div class="group">
+                        <input type="number" name="skuCode" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>SKU Code</label>
+                    </div>
+                    <div class="group">
+                        <button type="submit" style="margin-top: 0;" class="submit">Add this Product</button>
+                    </div>
                 </div>
-                <div class="group">
-                    <input type="number" name="skuCode" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>SKU Code</label>
+            </form>
+            <h2>Set Person Code Initials (Current - <%= personCodeInitials %>)</h2>
+            <form action="/setPersonCode" method="POST">
+                <div>
+                    <div class="group">
+                        <input type="text" name="personCodeInitials" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Person Code Initials</label>
+                    </div>
+                    <div class="group">
+                        <button type="submit" style="margin-top: 0;" class="submit">Set this as the code</button>
+                    </div>
                 </div>
-                <div class="group">
-                    <input type="number" name="price" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Price</label>
-                </div>
-                <div class="group">
-                    <button type="submit" class="submit">Add this Product</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </div>
 </body>
 

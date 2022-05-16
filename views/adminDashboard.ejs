@@ -44,8 +44,15 @@
                         <% } else { %>
                             <tr class="even">
                         <% } %>
-                        
+                        <% if(i < 9) { %>
                             <td>00<%= i+1 %></td>
+                        <% } else if (i < 99) { %>
+                            <td>0<%= i+1 %></td>
+                        <% } else { %>
+                            <td><%= i+1 %></td>
+                        <% } %>
+                        
+                            
                             <td><%= allUsers[i].name %></td>
                             <td><%= allUsers[i].phoneNo %></td>
                             <td><%= allUsers[i].email %></td>

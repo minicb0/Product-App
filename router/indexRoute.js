@@ -8,6 +8,7 @@ require('../db/mongoose');
 const User = require("../models/userSchema");
 const Product = require("../models/productSchema");
 const Admin = require("../models/adminSchema");
+const Constant = require("../models/constantSchema");
 
 const { requiredAuth, checkUser } = require("../auth/authMiddleware.js");
 const { createToken } = require('../auth/jwttoken.js')
@@ -26,7 +27,8 @@ router.get('/admin/login', async (req, res) => {
 })
 
 router.get('/admin/addProduct', requiredAuth, checkUser, async (req, res) => {
-    res.render('addProduct', { message: req.flash('message') })
+    const constant = await Constant.findOne({ });
+    res.render('addProduct', { message: req.flash('message'), personCodeInitials: constant.personCodeInitials })
 })
 
 router.get('/admin/dashboard', requiredAuth, checkUser, async (req, res) => {
@@ -92,13 +94,46 @@ router.post('/adminLogin', async (req, res) => {
     }
 })
 
+router.post('/setPersonCode', async (req, res) => {
+    try {
+        const { personCodeInitials } = req.body;
+
+        if (!personCodeInitials) {
+            req.flash('message', 'Please fill all the fields')
+            res.redirect('/admin/addProduct')
+            // return res.status(400).json({ error: "Please fill all the fields" })
+        }
+
+        const constant = await Constant.findOne({ });
+        constant.personCodeInitials = personCodeInitials;
+
+
+        // const constant = new Constant({ personCodeInitials })
+
+        const constantRegistered = await constant.save();
+
+        if (constantRegistered) {
+            req.flash('message', 'Constant Updated Successfully')
+            res.redirect('/admin/addProduct')
+            // res.status(201).json({ message: "User Registered Successfully" });
+        } else {
+            req.flash('message', 'Failed to Add')
+            res.redirect('/admin/addProduct')
+            // res.status(500).json({ error: "Failed to Register" })
+        }
+        
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 router.post('/addProduct', async (req, res) => {
     try {
-        const { productNo, skuCode, price } = req.body;
+        const { productNo, skuCode } = req.body;
 
-        if (!productNo || !skuCode || !price) {
+        if (!productNo || !skuCode) {
             req.flash('message', 'Please fill all the fields')
-            res.redirect('/admin')
+            res.redirect('/admin/addProduct')
             // return res.status(400).json({ error: "Please fill all the fields" })
         }
 
@@ -194,9 +229,9 @@ router.post('/submit', async (req, res) => {
             const allProducts = []
 
             const allUsers = await User.find({ });
-
-            var user_code = 'ABCD';
-            if(allUsers.length < 10) {
+            const constant = await Constant.findOne({ });
+            var user_code = constant.personCodeInitials;
+            if(allUsers.length < 9) {
                 user_code += '00'
                 user_code += allUsers.length + 1;
             } else if(allUsers.length < 100) {
@@ -205,10 +240,11 @@ router.post('/submit', async (req, res) => {
             } else {
                 user_code += allUsers.length + 1;
             }
-
             for(let i=0; i<arr.length; i++) {
-                var item = arr[i].split(' x ');
+                var item = arr[i].split(/['x(]/);
+                var quantity = parseInt(item[0].trim())
                 var productNo = item[1].trim();
+                var price = parseInt(item[2].trim().slice(0, -1));
                 const product = await Product.findOne({ productNo: productNo })
 
                 var productCode = user_code + "_";
@@ -223,8 +259,8 @@ router.post('/submit', async (req, res) => {
                     skuCode: product.skuCode,
                     productNo: product.productNo,
                     productCode: productCode,
-                    quantity: parseInt(item[0].trim()),
-                    price: product.price
+                    quantity: quantity,
+                    price: price
                 })
             }
             var date = new Date()

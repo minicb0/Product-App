@@ -56,7 +56,9 @@ list.forEach(function (item, index) {
             inputNumberDecrement[index].classList.add('hidden');
             inputNumberIncrement[index].classList.add('hidden');
         }
+        
         quantity[index].type = (item.checked) ? 'number' : 'hidden';
+        price[index].type = (item.checked) ? 'number' : 'hidden';
         calc()
     })
 })
@@ -90,10 +92,14 @@ quantity.forEach(function (item) {
     item.addEventListener('input', calc)
 })
 
+price.forEach(function (item) {
+    item.addEventListener('input', calc)
+})
+
 function calc() {
     for (var i = 0, arr = []; i < list.length; i++) {
         var text = list[i].parentElement.children[1].textContent;
-        if (list[i].checked) arr.push(quantity[i].value + ' x ' + text)
+        if (list[i].checked) arr.push(quantity[i].value + ' x ' + text + ' (' + price[i].value + ') ')
     }
     console.log(arr)
     txt.value = arr.join(', ')

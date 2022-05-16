@@ -71,11 +71,10 @@
                                 <span class="input-number-increment hidden">+</span>
                                 <input type="hidden" class="list input-number quantity" min="1" value="1" />
                                 <span class="input-number-decrement hidden">–</span>
-                                <span class="price">(Price - Rs. <%= allProducts[i].price %>)</span>
+                                <input type="hidden" class="list price" min="0" value="0" required />
                             </div>
                             <% } %>
                         </div>
-
                     </div>
                 </div>
                 <div class="group">

@@ -44,17 +44,30 @@ h2, h1 {
     z-index: 1;
 }
 
-.price {
+/* .price {
     float: right;
     margin-right: 5px;
     color: grey;
     font-size: 15px;
-
-}
+} */
 
 .quantity {
     float: right;
     width: 50px
+}
+.price {
+    float: right;
+    width: 60px;
+    margin-right: 10px;
+    float: right;
+    border: 1px solid #ccc;
+    height: 25px;
+    user-select: none;
+    border-radius: 4px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content div {
@@ -329,4 +342,29 @@ input[type=number] {
     padding: 10px;
     border-radius: 15px;
     font-size: 25px;
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        width: 100px;
+        display: unset;
+    }
+    .group {
+        width: 100%;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .group input {
+        width: 80%;
+    }
+    .content {
+        width: 100%;
+        min-width: unset;
+    }
+    #droptxt {
+        width: 90%;
+    }
+    .bar {
+        width: 80%;
+    }
 }

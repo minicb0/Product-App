@@ -8,10 +8,6 @@ const productSchema = new mongoose.Schema({
     skuCode: {
         type: Number,
         required: true
-    },
-    price: {
-        type: Number,
-        required: true
     }
 });
 
