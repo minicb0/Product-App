@@ -61,18 +61,18 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td>Product No.</td>
+                                        <td>Product Name</td>
                                         <td>Quantity</td>
                                         <td>Product Code</td>
                                         <td>SKU Code</td>
                                         <td>Price</td>
                                     </tr>
                                 <% for (let j=0; j < allUsers[i].allProducts.length; j++) { %>
-                                        <tr>
-                                            <td><%= allUsers[i].allProducts[j].productNo %></td>
+                                        <tr class="productsTR">
+                                            <td class="prouctNameTD"><%= allUsers[i].allProducts[j].productName %></td>
                                             <td><%= allUsers[i].allProducts[j].quantity %></td>
                                             <td><%= allUsers[i].allProducts[j].productCode %></td>
-                                            <td><%= allUsers[i].allProducts[j].skuCode %></td>
+                                            <td class="skuTD"><%= allUsers[i].allProducts[j].skuCode %></td>
                                             <td><%= allUsers[i].allProducts[j].price %></td>
                                         </tr>
     

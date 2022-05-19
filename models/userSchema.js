@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     allProducts: [{
-        skuCode: Number,
-        productNo: String,
+        skuCode: String,
+        productName: String,
         productCode: String,
         quantity: Number,
         price: Number

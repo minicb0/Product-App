@@ -420,3 +420,15 @@ th {
 .navbar ul li a:hover:not(.active) {
     background-color: #111;
 }
+
+/* .productsTR td {
+    width: 5px;
+} */
+
+.prouctNameTD {
+    width: 200px;
+}
+
+.skuTD {
+    width: 160px;
+}

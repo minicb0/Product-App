@@ -25,25 +25,26 @@
     <div class="wrapper">
         <form action="/submit" method="POST">
             <div>
-                <div class="group">
-                    <input type="text" name="name" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Name</label>
+                <div class="personalDetails">
+                    <div class="group">
+                        <input type="text" name="name" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Name</label>
+                    </div>
+                    <div class="group">
+                        <input type="text" name="email" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Email</label>
+                    </div>
+                    <div class="group">
+                        <input type="number" name="phoneNo" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Phone No.</label>
+                    </div>
                 </div>
-                <div class="group">
-                    <input type="text" name="email" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Email</label>
-                </div>
-                <div class="group">
-                    <input type="number" name="phoneNo" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Phone No.</label>
-                </div>
-
                 <div class="dropdown">
                     <div class="group" style="margin-bottom: 0px;">
                         <input type="text" id="droptxt" class="list" name="products" readonly required>
@@ -66,12 +67,13 @@
                             <div id="noProduct" style="display:none;">No Mathcing Products Found!</div>
                             <% for (let i=0; i < allProducts.length; i++) { %>
                             <div class="list productGroup">
-                                <input type="checkbox" class="list" value="<%= allProducts[i].productNo %>" />
-                                <label for="apple" class="list productLabel"><%= allProducts[i].productNo %> </label>
+                                <input type="checkbox" class="list" name="item<%= i+1 %>" value="<%= allProducts[i].productName %>" />
+                                <label for="apple" class="list productLabel" name="item<%= i+1 %>"><%= allProducts[i].productName %> </label>
                                 <span class="input-number-increment hidden">+</span>
                                 <input type="hidden" class="list input-number quantity" min="1" value="1" />
                                 <span class="input-number-decrement hidden">–</span>
-                                <input type="hidden" class="list price" min="0" value="0" required />
+                                <span class="list price">(Price - Rs. <%= allProducts[i].price %>)</span>
+                                <!-- <input type="hidden" class="list price" min="0" value="0" required /> -->
                             </div>
                             <% } %>
                         </div>

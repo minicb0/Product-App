@@ -24,7 +24,7 @@ h2, h1 {
 /**** Dropdown ****/
 #droptxt {
     padding: 8px;
-    width: 400px;
+    width: 800px;
     cursor: pointer;
     box-sizing: border-box
 }
@@ -38,24 +38,35 @@ h2, h1 {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 400px;
+    width: 800px;
+    /* min-width: 400px; */
     overflow: auto;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
     z-index: 1;
 }
 
-/* .price {
+.price {
     float: right;
     margin-right: 5px;
     color: grey;
     font-size: 15px;
-} */
+    user-select: none;
+}
 
 .quantity {
     float: right;
     width: 50px
 }
-.price {
+
+.productLabel {
+    max-width: 500px;
+    word-wrap: break-word;
+    user-select: none;
+}
+.productLabel:hover {
+    cursor: pointer;
+}
+/* .price {
     float: right;
     width: 60px;
     margin-right: 10px;
@@ -68,7 +79,7 @@ h2, h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .content div {
     padding: 10px 15px
@@ -319,8 +330,14 @@ input[type=number] {
     background-color: #0f1ef883;
 }
 
+.personalDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .allProducts {
-    max-height: 200px;
+    max-height: 350px;
     overflow-y: auto;
 }
 

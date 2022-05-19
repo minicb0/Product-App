@@ -58,9 +58,28 @@ list.forEach(function (item, index) {
         }
         
         quantity[index].type = (item.checked) ? 'number' : 'hidden';
-        price[index].type = (item.checked) ? 'number' : 'hidden';
         calc()
     })
+
+})
+
+productLabel.forEach(function (item, index) {
+    item.addEventListener('click', function () {
+        
+        if (list[index].checked) {
+            list[index].checked = false;
+            inputNumberDecrement[index].classList.add('hidden');
+            inputNumberIncrement[index].classList.add('hidden');
+        } else {
+            list[index].checked = true;
+            inputNumberDecrement[index].classList.remove('hidden');
+            inputNumberIncrement[index].classList.remove('hidden');
+        }
+        
+        quantity[index].type = (list[index].checked) ? 'number' : 'hidden';
+        calc()
+    })
+
 })
 
 inputNumberDecrement.forEach(function (item, index) {
@@ -92,16 +111,16 @@ quantity.forEach(function (item) {
     item.addEventListener('input', calc)
 })
 
-price.forEach(function (item) {
-    item.addEventListener('input', calc)
-})
+// price.forEach(function (item) {
+//     item.addEventListener('input', calc)
+// })
 
 function calc() {
     for (var i = 0, arr = []; i < list.length; i++) {
         var text = list[i].parentElement.children[1].textContent;
-        if (list[i].checked) arr.push(quantity[i].value + ' x ' + text + ' (' + price[i].value + ') ')
+        if (list[i].checked) arr.push(quantity[i].value + ' x ' + text )
     }
-    console.log(arr)
+    // console.log(arr)
     txt.value = arr.join(', ')
 }
 

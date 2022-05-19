@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const constantSchema = new mongoose.Schema({
     personCodeInitials: {
         type: String
+    },
+    personCount: {
+        type: Number
     }
 });
 

@@ -28,16 +28,22 @@
             <form action="/addProduct" method="POST">
                 <div>
                     <div class="group">
-                        <input type="text" name="productNo" required>
+                        <input type="text" name="productName" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
-                        <label>Product No.</label>
+                        <label>Product Name</label>
                     </div>
                     <div class="group">
-                        <input type="number" name="skuCode" required>
+                        <input type="text" name="skuCode" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>SKU Code</label>
+                    </div>
+                    <div class="group">
+                        <input type="number" name="price" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Price</label>
                     </div>
                     <div class="group">
                         <button type="submit" style="margin-top: 0;" class="submit">Add this Product</button>

@@ -106,6 +106,7 @@ router.post('/setPersonCode', async (req, res) => {
 
         const constant = await Constant.findOne({ });
         constant.personCodeInitials = personCodeInitials;
+        constant.personCount = 0;
 
 
         // const constant = new Constant({ personCodeInitials })
@@ -129,15 +130,15 @@ router.post('/setPersonCode', async (req, res) => {
 
 router.post('/addProduct', async (req, res) => {
     try {
-        const { productNo, skuCode } = req.body;
+        const { productName, skuCode, price } = req.body;
 
-        if (!productNo || !skuCode) {
+        if (!productName || !skuCode || !price) {
             req.flash('message', 'Please fill all the fields')
             res.redirect('/admin/addProduct')
             // return res.status(400).json({ error: "Please fill all the fields" })
         }
 
-        const productNoCheck = await Product.findOne({ productNo: productNo })
+        const productNoCheck = await Product.findOne({ productName: productName })
 
         if(productNoCheck != null) {
             req.flash('message', 'This Product No. already exist. Choose a different one.')
@@ -149,7 +150,7 @@ router.post('/addProduct', async (req, res) => {
             return res.redirect('/admin/addProduct')
         }
 
-        const product = new Product({ productNo, skuCode, price })
+        const product = new Product({ productName, skuCode, price })
 
         const productRegistered = await product.save();
 
@@ -228,24 +229,23 @@ router.post('/submit', async (req, res) => {
             const arr = products.split(' , ');
             const allProducts = []
 
-            const allUsers = await User.find({ });
             const constant = await Constant.findOne({ });
             var user_code = constant.personCodeInitials;
-            if(allUsers.length < 9) {
+            var personCount = parseInt(constant.personCount);
+            if(personCount < 9) {
                 user_code += '00'
-                user_code += allUsers.length + 1;
-            } else if(allUsers.length < 100) {
+                user_code += personCount + 1;
+            } else if(personCount < 100) {
                 user_code += '0'
-                user_code += allUsers.length + 1;
+                user_code += personCount + 1;
             } else {
-                user_code += allUsers.length + 1;
+                user_code += personCount + 1;
             }
             for(let i=0; i<arr.length; i++) {
-                var item = arr[i].split(/['x(]/);
+                var item = arr[i].split(' x ');
                 var quantity = parseInt(item[0].trim())
-                var productNo = item[1].trim();
-                var price = parseInt(item[2].trim().slice(0, -1));
-                const product = await Product.findOne({ productNo: productNo })
+                var productName = item[1].trim();
+                const product = await Product.findOne({ productName: productName })
 
                 var productCode = user_code + "_";
                 if(i < 9) {
@@ -254,13 +254,12 @@ router.post('/submit', async (req, res) => {
                 } else {
                     productCode += i +1;
                 }
-                
                 allProducts.push({
                     skuCode: product.skuCode,
-                    productNo: product.productNo,
+                    productName: product.productName,
                     productCode: productCode,
                     quantity: quantity,
-                    price: price
+                    price: product.price
                 })
             }
             var date = new Date()
@@ -269,6 +268,8 @@ router.post('/submit', async (req, res) => {
             const userRegistered = await user.save();
 
             if (userRegistered) {
+                constant.personCount ++;
+                await constant.save();
                 req.flash('message', 'Entry made Successfully!')
                 res.redirect('/home')
                 // res.status(201).json({ message: "User Registered Successfully" });
