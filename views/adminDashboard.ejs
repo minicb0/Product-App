@@ -67,6 +67,7 @@
                                         <td>Product Code</td>
                                         <td>SKU Code</td>
                                         <td>Price</td>
+                                        <td>Total Price</td>
                                     </tr>
                                 <% for (let j=0; j < allUsers[i].allProducts.length; j++) { %>
                                         <tr class="productsTR">
@@ -75,9 +76,23 @@
                                             <td><%= allUsers[i].allProducts[j].productCode %></td>
                                             <td class="skuTD"><%= allUsers[i].allProducts[j].skuCode %></td>
                                             <td><%= allUsers[i].allProducts[j].price %></td>
+                                            <td><%= allUsers[i].allProducts[j].price * allUsers[i].allProducts[j].quantity %></td>
                                         </tr>
-    
                                 <% } %>
+                                <tr style="background-color: rgb(142, 142, 142);">
+                                    <td>Total Price</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                    <% var total=0 %>
+                                    <% for (let j=0; j < allUsers[i].allProducts.length; j++) { %>
+                                        <% total += allUsers[i].allProducts[j].price * allUsers[i].allProducts[j].quantity %>
+                                    <% } %>
+                                    <%= total %>
+                                    </td>
+                                </tr>
                             </table>
                             </td>
                             <td><%= allUsers[i].paymentMode %></td>
