@@ -14,7 +14,7 @@
 
 <body style="height: 100vh;">
     <%- include('./navbar.ejs') %>
-    <h1>PK's Form!</h1>
+    <h1>Aazol Exhibition</h1>
     <div id="messageDiv">
         <div id="message">
             <% if (message !='' ) { %>
@@ -35,6 +35,7 @@
                         <th>Date</th>
                         <th>Person Code</th>
                         <th>Products</th>
+                        <th>Payment Mode</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,7 @@
                                 <% } %>
                             </table>
                             </td>
+                            <td><%= allUsers[i].paymentMode %></td>
                         </tr>
                     <% } %>
                 </tbody>

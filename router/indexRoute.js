@@ -178,9 +178,9 @@ router.get('/home', async (req, res) => {
 
 router.post('/submit', async (req, res) => {
     try {
-        const { name, email, phoneNo, products } = req.body;
+        const { name, email, phoneNo, paymentMode, products } = req.body;
 
-        if (!name || !email || !phoneNo || !products) {
+        if (!name || !email || !phoneNo || !paymentMode || !products) {
             req.flash('message', 'Please fill all the fields')
             res.redirect('/home')
             // return res.status(400).json({ error: "Please fill all the fields" })
@@ -264,7 +264,7 @@ router.post('/submit', async (req, res) => {
             }
             var date = new Date()
 
-            const user = new User({ name, email, phoneNo, user_code, date, allProducts })
+            const user = new User({ name, email, phoneNo, user_code, date, paymentMode, allProducts })
             const userRegistered = await user.save();
 
             if (userRegistered) {

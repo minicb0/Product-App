@@ -8,6 +8,8 @@ var txt = document.getElementById('droptxt'),
     quantity = document.querySelectorAll('.quantity'),
     productLabel = document.querySelectorAll('.productLabel'),
     allProducts = document.querySelectorAll('.allProducts'),
+    inputRadio = document.querySelectorAll('.inputRadio'),
+    paymentMode = document.querySelectorAll('.paymentMode'),
     productGroup = document.querySelectorAll('.productGroup'),
     inputNumberIncrement = document.querySelectorAll('.input-number-increment');
 
@@ -61,6 +63,12 @@ list.forEach(function (item, index) {
         calc()
     })
 
+})
+
+inputRadio.forEach(function (item, index) {
+    item.addEventListener('click', function () {
+        paymentMode[index].checked = true;
+    })
 })
 
 productLabel.forEach(function (item, index) {

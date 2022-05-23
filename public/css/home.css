@@ -337,7 +337,7 @@ input[type=number] {
 }
 
 .allProducts {
-    max-height: 350px;
+    max-height: 290px;
     overflow-y: auto;
 }
 
@@ -384,4 +384,61 @@ input[type=number] {
     .bar {
         width: 80%;
     }
+}
+
+
+.container {
+    /* width: 100%;
+    height: 100%;
+    display: flex; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.radio_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #cecece;
+    width: 280px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: inset 0.5px 0.5px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+input[type="radio"] {
+    appearance: none;
+    display: none;
+}
+
+.radio_container label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: linear 0.3s;
+    color: #6e6e6edd;
+    user-select: none;
+}
+
+input[type="radio"]:checked + label {
+    background-color: rgb(96, 104, 249);
+    color: black;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.inputRadio:hover {
+    cursor: pointer;
+    background-color: rgb(173, 173, 173);
+    border-radius: 10px;
+
 }

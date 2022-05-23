@@ -13,7 +13,7 @@
 </head>
 
 <body style="height: 100vh;">
-    <h1>PK's Form!</h1>
+    <h1>Aazol Exhibition</h1>
     <div id="messageDiv">
         <div id="message">
             <% if (message != '') { %>
@@ -44,6 +44,25 @@
                         <span class="bar"></span>
                         <label>Phone No.</label>
                     </div>
+                </div>
+                <div class="group">
+                    <div class="container">
+                        <div class="radio_container">
+                            <div class="inputRadio">
+                                <input type="radio" class="paymentMode" name="paymentMode" value="Cash" checked>
+                                <label for="Cash" class="paymentModeLabel">Cash</label>
+                            </div>
+                            <div class="inputRadio">
+                                <input type="radio" class="paymentMode" name="paymentMode" value="UPI">
+                                <label for="UPI" class="paymentModeLabel">UPI</label>
+                            </div>
+                            <div class="inputRadio">
+                                <input type="radio" class="paymentMode" name="paymentMode" value="Card">
+                                <label for="Card" class="paymentModeLabel">Card</label>
+                            </div>
+                        </div>
+                    </div>
+                    <label>Payment Mode</label>               
                 </div>
                 <div class="dropdown">
                     <div class="group" style="margin-bottom: 0px;">

@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    paymentMode: {
+        type: String,
+        required: true
+    },
     allProducts: [{
         skuCode: String,
         productName: String,
