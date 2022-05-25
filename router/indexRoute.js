@@ -101,10 +101,16 @@ router.post('/setPersonCode', async (req, res) => {
         if (!personCodeInitials) {
             req.flash('message', 'Please fill all the fields')
             res.redirect('/admin/addProduct')
+            return;
             // return res.status(400).json({ error: "Please fill all the fields" })
         }
 
         const constant = await Constant.findOne({ });
+        if(constant.personCodeInitials == personCodeInitials) {
+            req.flash('message', 'This is already set as current person code')
+            res.redirect('/admin/addProduct')
+            return;
+        }
         constant.personCodeInitials = personCodeInitials;
         constant.personCount = 0;
 
