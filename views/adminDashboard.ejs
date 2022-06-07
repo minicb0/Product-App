@@ -34,8 +34,9 @@
                         <th>Email</th>
                         <th>Date</th>
                         <th>Person Code</th>
-                        <th>Products</th>
+                        <th>Comments</th>
                         <th>Payment Mode</th>
+                        <th>Products</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +60,14 @@
                             <td><%= allUsers[i].email %></td>
                             <td><%= allUsers[i].date.toISOString().slice(0, 10) %></td>
                             <td><%= allUsers[i].user_code %></td>
+                            <td>
+                                <%  if(allUsers[i].comments && allUsers[i].comments != "" ) { %>
+                                    <%= allUsers[i].comments %>
+                                <% } else { %>
+                                    -
+                                <% } %>
+                            </td>
+                            <td><%= allUsers[i].paymentMode %></td>
                             <td>
                                 <table>
                                     <tr>
@@ -95,7 +104,6 @@
                                 </tr>
                             </table>
                             </td>
-                            <td><%= allUsers[i].paymentMode %></td>
                         </tr>
                     <% } %>
                 </tbody>

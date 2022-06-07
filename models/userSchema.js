@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    comments: {
+        type: String,
+    },
     allProducts: [{
         skuCode: String,
         productName: String,
